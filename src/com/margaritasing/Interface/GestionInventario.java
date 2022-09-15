@@ -6,5 +6,5 @@ public interface GestionInventario {
    void agregarStock(int codigo, int unidades);
    void eliminarStock(int codigo, int unidades);
    void verProducto(int codigo);
-   void eliminarProducto(String nombre);
+   void eliminarProducto(int codigo);
 }

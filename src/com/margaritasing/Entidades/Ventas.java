@@ -10,9 +10,7 @@ public class Ventas implements GestionInventario{
 
 
     private List<Producto> productos = new ArrayList<>();
-
-
-
+    private  Producto producto;
 
 
     @Override
@@ -27,13 +25,6 @@ public class Ventas implements GestionInventario{
     }
 
 
-    public void buscarProductosLanda(String nombre) {
-        Optional<Producto> producto =
-        productos.stream()
-                .filter( nom -> nom.getNombre().equals(nombre))
-                .findFirst();
-        producto.ifPresent(System.out::println);
-    }
 
 
 
@@ -55,9 +46,12 @@ public class Ventas implements GestionInventario{
 
 
     @Override
-    public void eliminarProducto(String nombre) {
-
-
+    public void eliminarProducto(int codigo) {
+        Producto p = obtenerProducto(codigo);
+        if (p != null){
+            productos.remove(p);
+            System.out.println(productos);
+        }
 
 
     }
@@ -102,6 +96,16 @@ public class Ventas implements GestionInventario{
                 System.out.println(productos.get(i));
             }
         }
+    }
+
+    public Producto obtenerProducto(int codigo) {
+        for (int cont = 0; cont < productos.size(); cont++) {
+            Producto p = productos.get(cont);
+            if (p.getCodigo() == codigo) {
+                    return p;
+            }
+        }
+        return null;
     }
 
 

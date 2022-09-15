@@ -55,6 +55,11 @@ public class Main {
 
         ventas.buscarProductosLanda("Piña");
 
+        System.out.println(ventas.obtenerProducto(12));
+
+        ventas.eliminarProducto(9);
+        ventas.mostrarTodosProductosLanda();
+
 
 
 
