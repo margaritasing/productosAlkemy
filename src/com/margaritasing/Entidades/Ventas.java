@@ -19,19 +19,47 @@ public class Ventas implements GestionInventario{
 
     }
 
+    //mostrar un producto, o los productos
+
+    @Override
+    public void verProducto(int codigo) {
+        for (int i = 0; i < productos.size(); i++) {
+            if (productos.get(i).getCodigo() == codigo) {
+                System.out.println(productos.get(i));
+            }
+        }
+    }
+
+    public Producto obtenerProducto(int codigo) {
+        for (int cont = 0; cont < productos.size(); cont++) {
+            Producto p = productos.get(cont);
+            if (p.getCodigo() == codigo) {
+                return p;
+            }
+        }
+        return null;
+    }
+
     public void mostrarTodosProductosLanda( ) {
         productos.stream()
                  .forEach(System.out::println);
     }
 
-
-
-
-
     public void mostrarProductoConLanda( int codigo ) {
        productos.stream()
                .filter( mostr -> mostr.getCodigo() == codigo)
                .forEach(System.out::println);
+    }
+
+    //metodos eliminar producto
+
+    @Override
+    public void eliminarProducto(int codigo) {
+        Producto p = obtenerProducto(codigo);
+        if (p != null){
+            productos.remove(p);
+            System.out.println(productos);
+        }
     }
 
     public void eliminarUsandoLandas( int codigo ) {
@@ -45,17 +73,7 @@ public class Ventas implements GestionInventario{
     }
 
 
-    @Override
-    public void eliminarProducto(int codigo) {
-        Producto p = obtenerProducto(codigo);
-        if (p != null){
-            productos.remove(p);
-            System.out.println(productos);
-        }
-
-
-    }
-
+    //metodos agregar stock
     @Override
     public void agregarStock(int codigo, int unidades) {
         for (int i = 0; i < productos.size(); i++) {
@@ -72,6 +90,7 @@ public class Ventas implements GestionInventario{
     }
 
 
+    //eliminar stock
 
     @Override
     public void eliminarStock(int codigo, int unidades) {
@@ -89,24 +108,9 @@ public class Ventas implements GestionInventario{
                 .forEach(a ->  a.setStock(a.getStock() - unidades));
     }
 
-    @Override
-    public void verProducto(int codigo) {
-        for (int i = 0; i < productos.size(); i++) {
-            if (productos.get(i).getCodigo() == codigo) {
-                System.out.println(productos.get(i));
-            }
-        }
-    }
 
-    public Producto obtenerProducto(int codigo) {
-        for (int cont = 0; cont < productos.size(); cont++) {
-            Producto p = productos.get(cont);
-            if (p.getCodigo() == codigo) {
-                    return p;
-            }
-        }
-        return null;
-    }
+
+
 
 
 
